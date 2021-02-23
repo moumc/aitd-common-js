@@ -251,6 +251,11 @@ const serializer = {
     json.Destination = decodedXAddress?.address ?? destination
     if (decodedXAddress?.tag !== undefined) {
       json.DestinationTag = decodedXAddress.tag
+    } else {
+      const destinationTag = payment.getDestinationTag()?.getValue()
+      if (destinationTag !== undefined) {
+        json.DestinationTag = destinationTag
+      }
     }
 
     const amount = payment.getAmount()
